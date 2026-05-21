@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <title>Contact | Jemm</title>
+  <style>
+    :root {
+      --bg-deep: #02070c;
+      --bg-blue: #041122;
+      --text: #f3f0ec;
+      --muted: rgba(243, 240, 236, 0.72);
+      --line: rgba(255, 255, 255, 0.16);
+      --cyan: #16d7e8;
+      --blue: #4A8BF2;
+      --yellow: #FFE62B;
+      --button: rgba(27, 26, 29, .75);
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Lato", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --side-space: 10vw;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      background: #000;
+      color: var(--text);
+      font-family: var(--sans);
+      overflow-x: hidden;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+
+    .page { width: 100%; background: #000; }
+    .container {
+      width: calc(100% - var(--side-space) * 2);
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* Header, matched to homepage/product page */
+    .site-header .container {
+      width: calc(100% - 128px);
+      max-width: none;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 30;
+      width: 100%;
+      height: 60px;
+      padding: 12px 0;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(255,255,255,.10), rgba(255,255,255,0));
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 4px 4px rgba(0,0,0,.25);
+      pointer-events: none;
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: auto;
+    }
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+}
+
+.logo-mark {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: .72;
+}
+
+.logo-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  opacity: 85%;
+}
+
+.logo-text {
+  font-family: revert;
+  font-size: 24px;
+  letter-spacing: -.02em;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1;
+  transition: color .25s ease;
+}
+.logo-text:hover{
+  color: rgba(255, 255, 255);
+}
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(28px, 5vw, 68px);
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: rgba(255,255,255,.78);
+      text-transform: uppercase;
+    }
+    .nav-links a { transition: color .25s ease; }
+    .nav-links a:hover { color: #fff; }
+
+    .menu-toggle {
+      display: block;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .menu-toggle span,
+    .menu-toggle::before,
+    .menu-toggle::after {
+      content: "";
+      display: block;
+      width: 18px;
+      height: 1px;
+      background: currentColor;
+      margin: 5px auto;
+      transition: transform .25s ease, opacity .25s ease;
+    }
+    body.menu-open .menu-toggle span { opacity: 0; }
+    body.menu-open .menu-toggle::before { transform: translateY(6px) rotate(45deg); }
+    body.menu-open .menu-toggle::after { transform: translateY(-6px) rotate(-45deg); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hero */
+    .contact-hero {
+      position: relative;
+      min-height: 620px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: #02070c;
+      text-align: center;
+    }
+
+    .contact-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(0,0,0,.24), rgba(0,0,0,.46)),
+        url('contact_hero_bg.jpg');
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.02);
+    }
+
+    .contact-hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 180px;
+      background: linear-gradient(to bottom, transparent, #041122);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      width: min(100% - 48px, 820px);
+      transform: translateY(18px);
+    }
+
+    .hero-inner h1 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(54px, 7vw, 80px);
+      line-height: 1;
+      letter-spacing: -.045em;
+      color: rgba(255,255,255,.95);
+      text-shadow: 0 8px 32px rgba(0,0,0,.5);
+    }
+
+    .hero-inner p {
+      margin-top: 24px;
+      font-family: var(--serif);
+      font-size: 20px;
+      line-height: 1.45;
+      color: rgba(255,255,255,.9);
+      text-shadow: 0 3px 18px rgba(0,0,0,.72);
+    }
+
+    /* Contact form */
+    .contact-section {
+      background: #041122;
+      padding: 80px 0;
+    }
+
+    .contact-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 42px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 32px 34px;
+    }
+
+    .field { display: flex; flex-direction: column; }
+    .field.full { grid-column: 1 / -1; }
+
+    .field label {
+      margin-bottom: 12px;
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: lighter;
+      line-height: 1.35;
+      color: #FFFFFF;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 999px;
+      background: rgba(255,255,255,.085);
+      color: #FFFFFF;
+      font-family: var(--sans);
+      font-weight: 400;
+      outline: none;
+      transition: border-color .25s ease, background .25s ease, box-shadow .25s ease;
+    }
+
+    .field input,
+    .field select { height: 38px; padding: 0 18px; }
+
+    .field textarea {
+      min-height: 190px;
+      padding: 18px;
+      resize: vertical;
+      border-radius: 12px;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder { color: #CCCCCC80; }
+
+    .field select {
+      color: #CCCCCC80;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image:
+        linear-gradient(rgba(27,26,29,.70), rgba(27,26,29,.70)),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10' viewBox='0 0 14 10' fill='none'%3E%3Cpath d='M1 1L7 8L13 1' stroke='%23CCCCCC' stroke-width='1.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat, no-repeat;
+      background-position: 0 0, right 18px center;
+      background-size: 100% 100%, 14px 10px;
+    }
+
+    .field select.valid { color: #FFFFFF; }
+
+    .field select option {
+      background: #1B1A1D;
+      color: #CCCCCC;
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: rgba(22,215,232,.9);
+      background-color: rgba(255,255,255,.08);
+      box-shadow: 0 0 0 4px rgba(22,215,232,.08);
+    }
+
+    .form-action {
+      display: flex;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .pill-button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 30px;
+      border: .5px solid transparent;
+      border-radius: 999px;
+      background:
+        linear-gradient(rgba(27, 26, 29, .75), rgba(27, 26, 29, .75)) padding-box,
+        linear-gradient(135deg, rgba(255,255,255,.5) 0%, rgba(153,153,153,.08) 49%, rgba(255,255,255,.5) 100%) border-box;
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      box-shadow: 0 16px 28px rgba(0,0,0,.22);
+      cursor: pointer;
+      transition: background-position .42s ease, color .25s ease, box-shadow .25s ease;
+    }
+
+    .pill-button:hover,
+    .pill-button:focus-visible {
+      color: #FFE62B;
+      background:
+        linear-gradient(rgba(27, 26, 29, .88), rgba(27, 26, 29, .88)) padding-box,
+        linear-gradient(135deg, rgba(255,230,43,.5) 0%, rgba(255,230,43,.08) 49%, rgba(255,230,43,.5) 100%) border-box;
+      box-shadow: 0 16px 28px rgba(0,0,0,.22), 0 0 18px rgba(255,230,43,.12);
+      outline: none;
+    }
+
+    .form-message {
+      min-height: 22px;
+      text-align: center;
+      color: rgba(255,255,255,.76);
+      font-size: 16px;
+    }
+
+    /* Footer, matched to homepage/product page */
+    .site-footer { position: relative; z-index: 2; }
+    .footer-top {
+      background-color: #041122;
+      border-top: .5px solid rgba(255, 255, 255, .31);
+      padding: 68px 0 72px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 620px);
+      justify-content: space-between;
+      gap: 72px;
+      align-items: start;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .footer-links a {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: #D8D8D8;
+      transition: color .2s ease;
+    }
+    .footer-links a:hover,
+    .footer-links a:focus-visible { color: #fff; }
+    .footer-about h3 {
+      margin-bottom: 16px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: #D8D8D8;
+    }
+    .footer-about p {
+      max-width: 760px;
+      font-family: var(--sans);
+      font-size: 12px;
+      line-height: 1.9;
+      font-weight: 400;
+      color: #CCCCCC;
+    }
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      justify-content: flex-end;
+    }
+    .footer-social img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      opacity: .82;
+    }
+.footer-bottom {
+  background: #000;
+  padding: 26px 0;
+}
+
+.footer-bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.footer-legal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 48px;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: #BEBEBE;
+}
+
+.footer-email a {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  color: #BEBEBE;
+  transition: color .2s ease;
+}
+
+.footer-email a:hover {
+  color: #fff;
+}
+    .footer-legal a { color: inherit; transition: color .2s ease; }
+    .footer-legal a:hover,
+    .footer-legal a:focus-visible { color: #fff; }
+
+    @media (max-width: 760px) {
+      :root { --side-space: 24px; }
+      .site-header .container { width: calc(100% - 48px); }
+      .site-header {
+        height: 60px;
+        padding: 12px 0;
+        background: linear-gradient(to bottom, rgba(255,255,255,.10), rgba(255,255,255,0));
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+      }
+      .menu-toggle { display: block; }
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        left: 18px;
+        right: 18px;
+        display: grid;
+        gap: 0;
+        background: rgba(4, 14, 23, .96);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 10px;
+        transform: translateY(-16px);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform .25s ease, opacity .25s ease;
+      }
+      body.menu-open .nav-links {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .nav-links a { padding: 16px; border-radius: 12px; }
+      .nav-links a:hover { background: rgba(255,255,255,.06); }
+
+      .contact-hero { min-height: 540px; }
+      .hero-inner h1 { font-size: 52px; }
+      .hero-inner p { font-size: 18px; }
+      .contact-section { padding: 84px 0 94px; }
+      .form-grid { grid-template-columns: 1fr; gap: 28px; }
+      .contact-wrap { max-width: 520px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 42px; }
+      .footer-social { justify-content: flex-start; }
+      .footer-legal { gap: 22px 34px; }
+
+      .footer-links{
+        text-align: center;
+      }
+      .footer-links a{
+        font-size: 20px;
+      }
+      .footer-legal {
+        gap: 22px 34px;
+      }
+      .footer-about h3{
+        font-size: 20px;
+      }
+      .footer-about p{
+        font-size: 16px;
+      }
+      .footer-social img{
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      :root { --side-space: 18px; }
+      .hero-inner h1 { font-size: 44px; }
+      .hero-inner p { font-size: 16px; }
+      .pill-button { min-height: 46px; padding-inline: 23px; font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="index.html" class="logo-wrap" aria-label="Jemm home">
+          <!-- <div class="logo-mark">
+            <img src="logo_jemm.png" alt="Jemm Logo">
+          </div> -->
+          <span class="logo-text">jemm.ɑi</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="product.html">Product</a>
+          <a href="company.html">Company</a>
+          <a href="partners.html">Partners</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
+      </div>
+    </header>
+
+    <section class="contact-hero">
+      <div class="hero-inner reveal">
+        <h1>Contact Us</h1>
+        <p>Tell us what you're looking for. We'll take it from there.</p>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <div class="container contact-wrap">
+        <form class="contact-form reveal" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone Number</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+            </div>
+
+            <div class="field">
+              <label for="zip">Zip</label>
+              <input id="zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" required>
+            </div>
+
+            <div class="field">
+              <label for="iam">I am a ...</label>
+              <select id="iam" name="iam" required>
+                <option value="" selected disabled>Select an Option</option>
+                <option value="homeowner">Homeowner</option>
+                <option value="installer">System Integrator / Installer</option>
+                <option value="technology-partner">Technology Partner</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="about">I'm reaching out about...</label>
+              <select id="about" name="about" required>
+                <option value="" selected disabled>Select an Option</option>
+                <option value="product-information">Product Information</option>
+                <option value="partnership-opportunities">Partnership Opportunities</option>
+                <option value="demo-request">Demo Request</option>
+                <option value="general-inquiry">General Inquiry</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label for="message">Message (optional)</label>
+              <textarea id="message" name="message"></textarea>
+            </div>
+          </div>
+
+          <div class="form-action">
+            <button class="pill-button" type="submit">Send Message</button>
+          </div>
+          <p class="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="container footer-grid">
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="product.html">Jemm Arc</a>
+            <a href="company.html">About Us</a>
+            <a href="careers.html">Careers</a>
+            <a href="partners.html">Partners</a>
+          </div>
+          <div class="footer-about">
+            <h3>Jemm Tec LLC</h3>
+            <p>Jemm is your home's quiet intelligence. Unlike systems that rely on distant servers to think for you, Jemm lives where you do, inside your walls, on your network, on your terms. It learns your routines, responds to your voice, and keeps everything running whether the internet is up or not. No cloud in the middle. No one listening in. Just your home, working the way it always should have.</p>
+            <div class="footer-social">
+              <img src="twitter_icon.svg" alt="">
+              <img src="facebook_icon.svg" alt="">
+              <img src="instagram_icon.svg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+          <div class="footer-legal">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <span>Copyright @ 2026 Jemm Tech llc</span>
+          </div>
+          <div class="footer-email">
+            <a href="mailto:info@jemm.ai">info@jemm.ai</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const menuButton = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const form = document.querySelector('.contact-form');
+    const formMessage = document.querySelector('.form-message');
+    const selects = document.querySelectorAll('select');
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = document.body.classList.toggle('menu-open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        document.body.classList.remove('menu-open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    selects.forEach(select => {
+      select.addEventListener('change', () => {
+        select.classList.toggle('valid', select.value !== '');
+      });
+    });
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll('.reveal').forEach(element => revealObserver.observe(element));
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      formMessage.textContent = 'Thanks. Your message has been received.';
+      form.reset();
+      selects.forEach(select => select.classList.remove('valid'));
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <title>Careers | Jemm</title>
+  <style>
+    :root {
+      --bg-deep: #02070c;
+      --bg-blue: #041122;
+      --text: #f3f0ec;
+      --muted: rgba(243, 240, 236, 0.72);
+      --line: rgba(255, 255, 255, 0.16);
+      --cyan: #16d7e8;
+      --blue: #4A8BF2;
+      --yellow: #FFE62B;
+      --button: rgba(27, 26, 29, .75);
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Lato", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --side-space: 10vw;
+      --puzzle-progress: 0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      background: #000;
+      color: var(--text);
+      font-family: var(--sans);
+      overflow-x: hidden;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .page {
+      width: 100%;
+      background:
+        radial-gradient(circle at 24% 8%, rgba(53,153,247,.11), transparent 24%),
+        linear-gradient(180deg, #02070c 0%, #000 48%, #041122 100%);
+    }
+
+    .container {
+      width: calc(100% - var(--side-space) * 2);
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .site-header .container {
+      width: calc(100% - 128px);
+      max-width: none;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 30;
+      width: 100%;
+      height: 60px;
+      padding: 12px 0;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(255,255,255,.10), rgba(255,255,255,0));
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 4px 4px rgba(0,0,0,.25);
+      pointer-events: none;
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: auto;
+    }
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+}
+
+.logo-mark {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: .72;
+}
+
+.logo-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  opacity: 85%;
+}
+
+.logo-text {
+  font-family: revert;
+  font-size: 24px;
+  letter-spacing: -.02em;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1;
+  transition: color .25s ease;
+}
+.logo-text:hover{
+  color: rgba(255, 255, 255);
+}
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(28px, 5vw, 68px);
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: rgba(255,255,255,.78);
+      text-transform: uppercase;
+    }
+    .nav-links a { transition: color .25s ease; }
+    .nav-links a:hover { color: #fff; }
+
+    .menu-toggle {
+      display: block;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .menu-toggle span,
+    .menu-toggle::before,
+    .menu-toggle::after {
+      content: "";
+      display: block;
+      width: 18px;
+      height: 1px;
+      background: currentColor;
+      margin: 5px auto;
+      transition: transform .25s ease, opacity .25s ease;
+    }
+    body.menu-open .menu-toggle span { opacity: 0; }
+    body.menu-open .menu-toggle::before { transform: translateY(6px) rotate(45deg); }
+    body.menu-open .menu-toggle::after { transform: translateY(-6px) rotate(-45deg); }
+
+    .section-title {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(54px, 7vw, 80px);
+      line-height: 1;
+      letter-spacing: -.045em;
+      color: rgba(255,255,255,.95);
+      text-shadow: 0 0 18px rgba(53,153,247,.14), 0 8px 36px rgba(0,0,0,.45);
+    }
+
+    .pill-button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 24px;
+      border: .5px solid transparent;
+      border-radius: 999px;
+      background:
+        linear-gradient(rgba(27, 26, 29, .75), rgba(27, 26, 29, .75)) padding-box,
+        linear-gradient(135deg, rgba(255,255,255,.5) 0%, rgba(153,153,153,.08) 49%, rgba(255,255,255,.5) 100%) border-box;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      box-shadow: 0 16px 28px rgba(0,0,0,.22);
+      cursor: pointer;
+      transition: background-position .42s ease, color .25s ease, box-shadow .25s ease;
+    }
+
+    .pill-button:hover,
+    .pill-button:focus-visible {
+      color: var(--yellow);
+      background:
+        linear-gradient(rgba(27, 26, 29, .88), rgba(27, 26, 29, .88)) padding-box,
+        linear-gradient(135deg, rgba(255,230,43,.5) 0%, rgba(255,230,43,.08) 49%, rgba(255,230,43,.5) 100%) border-box;
+      box-shadow: 0 16px 28px rgba(0,0,0,.22), 0 0 18px rgba(255,230,43,.12);
+      outline: none;
+    }
+
+    .audience-style-button {
+      min-height: 36px;
+      padding-inline: 22px;
+      font-size: 12px;
+      color: #fff;
+      border: .5px solid transparent;
+      background:
+        linear-gradient(rgba(27,26,29,.75), rgba(27,26,29,.75)) padding-box,
+        linear-gradient(135deg, rgba(255,255,255,.15) 0%, rgba(255,255,255,.08) 49%, rgba(255,255,255,.15) 100%) border-box;
+      overflow: hidden;
+      isolation: isolate;
+      box-shadow: 0 16px 28px rgba(0,0,0,.22), 0 0 18px rgba(74,139,242,.16);
+      transition: color .32s ease, box-shadow .32s ease;
+    }
+
+    .audience-style-button::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: rgba(74,139,242,.78);
+      z-index: -2;
+    }
+
+    .audience-style-button::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: #FFE62B;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform .42s ease;
+      z-index: -1;
+    }
+
+    .audience-style-button:hover,
+    .audience-style-button:focus-visible {
+      transform: none;
+      color: #061522;
+      box-shadow: 0 16px 28px rgba(0,0,0,.22), 0 0 18px rgba(255,230,43,.16);
+    }
+
+    .audience-style-button:hover::after,
+    .audience-style-button:focus-visible::after { transform: scaleX(1); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .careers-hero {
+      position: relative;
+      min-height: 700px;
+      padding: 160px 0 90px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 16%, rgba(53,153,247,.16), transparent 28%),
+        linear-gradient(180deg, #061522 0%, #02070c 70%, #000 100%);
+    }
+
+    .careers-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size: 88px 88px;
+      opacity: .22;
+      mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%);
+    }
+
+    .careers-hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 240px;
+      background: linear-gradient(to bottom, transparent, rgba(0,0,0,.92));
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 520px) minmax(360px, 1fr);
+      gap: clamp(40px, 8vw, 120px);
+      align-items: start;
+    }
+
+    .hero-copy { padding-top: 70px; }
+
+    .hero-copy p {
+      margin-top: 42px;
+      max-width: 520px;
+      color: rgba(255,255,255,.80);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    /* Puzzle image composition */
+    .puzzle-wrap {
+      position: relative;
+      height: 460px;
+      transform: rotate(-18deg);
+      transform-origin: center;
+      opacity: .95;
+      filter: drop-shadow(0 0 24px rgba(255,255,255,.05));
+    }
+
+    .puzzle-stage {
+      position: absolute;
+      top: 0;
+      right: 24px;
+      width: 420px;
+      height: 540px;
+      transform: rotate(18deg);
+    }
+
+    .puzzle-piece-img {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 2px rgba(255,255,255,.14));
+      transition: opacity .18s linear, transform .18s linear;
+      will-change: transform, opacity;
+    }
+
+    .puzzle-piece-img.layer-1 { opacity: calc(.25 + var(--puzzle-progress) * .25); }
+    .puzzle-piece-img.layer-2 { opacity: calc(.20 + var(--puzzle-progress) * .30); }
+    .puzzle-piece-img.layer-3 { opacity: calc(.15 + var(--puzzle-progress) * .35); }
+    .puzzle-piece-img.layer-4 { opacity: calc(.10 + var(--puzzle-progress) * .40); }
+
+    .piece-1 {
+       left: 0;
+       top: 0;
+      }
+    .piece-2 { 
+      left: 99px;
+      top: -18px; 
+      width: 185px;
+      }
+    .piece-3 {
+       left: 233px;
+        top: 0; 
+      }
+    .piece-4 {
+       left: 17px;
+        top: 100px; 
+      }
+    .piece-5 {
+      left: 99px;
+      top: 82px;
+      width: 186px;
+      height: 186px;
+      }
+    .piece-6 {
+      left: 215px;
+      top: 100px; 
+      }
+    .piece-7 {
+      left: 99px;
+      top: 200px; 
+      width: 186px;
+      height: 186px;
+      }
+    .piece-8 {
+       left: 233px;
+        top: 200px; 
+      }
+
+    /* Empty slot is left-bottom: left:0; top:270px */
+    .piece-moving {
+      left: 0;
+      top: 448px;
+      opacity: calc(.18 + var(--puzzle-progress) * .32);
+      transform: translateY(calc(var(--puzzle-progress) * -248px)) rotate(calc((1 - var(--puzzle-progress)) * -42deg));
+      z-index: 5;
+    }
+
+    .puzzle-complete-glow {
+      position: absolute;
+      left: 0px;
+      top: 0;
+      width: 420px;
+      height: 420px;
+      /* background: rgba(255,255,255, calc(var(--puzzle-progress) * .05));
+      box-shadow: 0 0 calc(var(--puzzle-progress) * 28px) rgba(255,255,255,.12); */
+      pointer-events: none;
+      opacity: var(--puzzle-progress);
+    }
+
+    .jobs-section {
+      position: relative;
+      z-index: 2;
+      background: #000;
+      padding: 20px 0 132px;
+    }
+
+    .jobs-list {
+      display: grid;
+      gap: 32px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .job-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 32px;
+      min-height: 138px;
+      padding: 30px 28px;
+      border-radius: 6px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid transparent;
+      box-shadow: 0 22px 70px rgba(0,0,0,.18);
+      transition: background .32s ease, border-color .32s ease, box-shadow .32s ease;
+    }
+
+    .job-card:hover {
+      background: rgba(255,255,255,.075);
+      border-color: rgba(255,255,255,.14);
+      box-shadow: 0 24px 80px rgba(0,0,0,.24), 0 0 22px rgba(74,139,242,.10);
+    }
+
+    .job-card h2 {
+      font-family: var(--sans);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: #FFFFFF;
+      margin-bottom: 22px;
+    }
+
+    .job-card p {
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.5;
+      color: #CCCCCC;
+    }
+
+    .job-card p + p { margin-top: 8px; }
+
+    .job-card span{
+      font-size: 16px;
+      font-weight: 300;
+      color: #ccccccb0;
+      font-style: italic;
+    }
+    .site-footer { position: relative; z-index: 2; }
+    .footer-top {
+      background-color: #041122;
+      border-top: .5px solid rgba(255, 255, 255, .31);
+      padding: 68px 0 72px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 620px);
+      justify-content: space-between;
+      gap: 72px;
+      align-items: start;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .footer-links a {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: #D8D8D8;
+      transition: color .2s ease;
+    }
+    .footer-links a:hover,
+    .footer-links a:focus-visible { color: #fff; }
+    .footer-about h3 {
+      margin-bottom: 16px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: #D8D8D8;
+    }
+    .footer-about p {
+      max-width: 760px;
+      font-family: var(--sans);
+      font-size: 12px;
+      line-height: 1.9;
+      font-weight: 400;
+      color: #CCCCCC;
+    }
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      justify-content: flex-end;
+    }
+    .footer-social img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      opacity: .82;
+    }
+.footer-bottom {
+  background: #000;
+  padding: 26px 0;
+}
+
+.footer-bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.footer-legal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 48px;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: #BEBEBE;
+}
+
+.footer-email a {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  color: #BEBEBE;
+  transition: color .2s ease;
+}
+
+.footer-email a:hover {
+  color: #fff;
+}
+    .footer-legal a { color: inherit; transition: color .2s ease; }
+    .footer-legal a:hover,
+    .footer-legal a:focus-visible { color: #fff; }
+
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 42px;
+      }
+
+      .hero-copy {
+        padding-top: 20px;
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .hero-copy p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .puzzle-wrap {
+        height: 390px;
+        transform: rotate(-18deg) scale(.86);
+        transform-origin: top center;
+      }
+
+      .puzzle-stage {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root { --side-space: 24px; }
+      .site-header .container { width: calc(100% - 48px); }
+      .site-header {
+        height: 60px;
+        padding: 12px 0;
+        background: linear-gradient(to bottom, rgba(255,255,255,.10), rgba(255,255,255,0));
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+      }
+      .menu-toggle { display: block; }
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        left: 18px;
+        right: 18px;
+        display: grid;
+        gap: 0;
+        background: rgba(4, 14, 23, .96);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 10px;
+        transform: translateY(-16px);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform .25s ease, opacity .25s ease;
+      }
+      body.menu-open .nav-links {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .nav-links a { padding: 16px; border-radius: 12px; }
+      .nav-links a:hover { background: rgba(255,255,255,.06); }
+
+      .careers-hero { min-height: 760px; padding: 116px 0 60px; }
+      .hero-copy p { font-size: 16px; }
+      .puzzle-wrap { height: 320px; transform: rotate(-18deg) scale(.68); }
+      .jobs-section { padding: 30px 0 90px; }
+      .jobs-list { gap: 34px; }
+      .job-card {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .job-card h2 { font-size: 26px; }
+      .job-card .pill-button { justify-self: start; }
+      .footer-grid { grid-template-columns: 1fr; gap: 42px; }
+      .footer-social { justify-content: flex-start; }
+      .footer-legal { gap: 22px 34px; }
+
+      .footer-links{
+        text-align: center;
+      }
+      .footer-links a{
+        font-size: 20px;
+      }
+      .footer-legal {
+        gap: 22px 34px;
+      }
+      .footer-about h3{
+        font-size: 20px;
+      }
+      .footer-about p{
+        font-size: 16px;
+      }
+      .footer-social img{
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      :root { --side-space: 18px; }
+      .section-title { font-size: 48px; }
+      .puzzle-wrap { height: 280px; transform: rotate(-18deg) scale(.56); }
+      .job-card { padding: 26px 22px; }
+      .pill-button { min-height: 38px; padding-inline: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="index.html" class="logo-wrap" aria-label="Jemm home">
+          <!-- <div class="logo-mark">
+            <img src="logo_jemm.png" alt="Jemm Logo">
+          </div> -->
+          <span class="logo-text">jemm.ɑi</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="product.html">Product</a>
+          <a href="company.html">Company</a>
+          <a href="partners.html">Partners</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
+      </div>
+    </header>
+
+    <section class="careers-hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <h1 class="section-title">Careers</h1>
+          <p>Jemm is an early-stage consumer technology company building interactive software systems and user experiences for the home. We operate without traditional corporate bureaucracy, if you're talented, direct, and excited about turning creative ideas into products people actually live with, we want to hear from you.</p>
+        </div>
+
+        <div class="puzzle-wrap reveal" aria-hidden="true">
+          <div class="puzzle-stage">
+            <div class="puzzle-complete-glow"></div>
+            <img class="puzzle-piece-img piece-1 layer-1" src="puzzle_piece_01.png" alt="">
+            <img class="puzzle-piece-img piece-2 layer-1" src="puzzle_piece_02.png" alt="">
+            <img class="puzzle-piece-img piece-3 layer-1" src="puzzle_piece_03.png" alt="">
+            <img class="puzzle-piece-img piece-4 layer-2" src="puzzle_piece_04.png" alt="">
+            <img class="puzzle-piece-img piece-5 layer-2" src="puzzle_piece_05.png" alt="">
+            <img class="puzzle-piece-img piece-6 layer-3" src="puzzle_piece_06.png" alt="">
+            <img class="puzzle-piece-img piece-7 layer-3" src="puzzle_piece_08.png" alt="">
+            <img class="puzzle-piece-img piece-8 layer-4" src="puzzle_piece_09.png" alt="">
+            <img class="puzzle-piece-img piece-moving" src="puzzle_piece_07.png" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="jobs-section">
+      <div class="container">
+        <div class="jobs-list">
+          <article class="job-card reveal">
+            <div>
+              <h2>Artificial Intelligence Engineer</h2>
+              <p>Miami, FL</p>
+              <span>Full-time</span>
+            </div>
+            <a href="contact.html" class="pill-button audience-style-button">Apply</a>
+          </article>
+
+          <article class="job-card reveal">
+            <div>
+              <h2>Software Architect</h2>
+              <p>Miami, FL</p>
+              <span>Full-time</span>
+            </div>
+            <a href="contact.html" class="pill-button audience-style-button">Apply</a>
+          </article>
+
+          <article class="job-card reveal">
+            <div>
+              <h2>Product Manager</h2>
+              <p>Miami, FL</p>
+              <span>Full-time</span>
+            </div>
+            <a href="contact.html" class="pill-button audience-style-button">Apply</a>
+          </article>
+
+          <article class="job-card reveal">
+            <div>
+              <h2>UI Designer</h2>
+              <p>Miami, FL</p>
+              <span>Full-time</span>
+            </div>
+            <a href="contact.html" class="pill-button audience-style-button">Apply</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="container footer-grid">
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="product.html">Jemm Arc</a>
+            <a href="company.html">About Us</a>
+            <a href="careers.html">Careers</a>
+            <a href="partners.html">Partners</a>
+          </div>
+          <div class="footer-about">
+            <h3>Jemm Tec LLC</h3>
+            <p>Jemm is your home's quiet intelligence. Unlike systems that rely on distant servers to think for you, Jemm lives where you do, inside your walls, on your network, on your terms. It learns your routines, responds to your voice, and keeps everything running whether the internet is up or not. No cloud in the middle. No one listening in. Just your home, working the way it always should have.</p>
+            <div class="footer-social">
+              <img src="twitter_icon.svg" alt="">
+              <img src="facebook_icon.svg" alt="">
+              <img src="instagram_icon.svg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+          <div class="footer-legal">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <span>Copyright @ 2026 Jemm Tech llc</span>
+          </div>
+          <div class="footer-email">
+            <a href="mailto:info@jemm.ai">info@jemm.ai</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const menuButton = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = document.body.classList.toggle('menu-open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        document.body.classList.remove('menu-open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    function updatePuzzleProgress() {
+      const progress = Math.min(1, Math.max(0, window.scrollY / (window.innerHeight * .16)));
+      document.documentElement.style.setProperty('--puzzle-progress', progress.toFixed(3));
+    }
+
+    window.addEventListener('scroll', updatePuzzleProgress, { passive: true });
+    window.addEventListener('resize', updatePuzzleProgress);
+    updatePuzzleProgress();
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll('.reveal').forEach(element => revealObserver.observe(element));
+  </script>
+</body>
+</html>
