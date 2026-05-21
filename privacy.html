@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <title>Privacy Policy | Jemm</title>
+  <style>
+    :root {
+      --bg-deep: #02070c;
+      --bg-blue: #041122;
+      --text: #f3f0ec;
+      --muted: rgba(243, 240, 236, 0.72);
+      --line: rgba(255, 255, 255, 0.16);
+      --cyan: #16d7e8;
+      --blue: #4A8BF2;
+      --yellow: #FFE62B;
+      --button: rgba(27, 26, 29, .75);
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Lato", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --side-space: 10vw;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      background: #000;
+      color: var(--text);
+      font-family: var(--sans);
+      overflow-x: hidden;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    .page {
+      width: 100%;
+      background: #041122;
+    }
+
+    .container {
+      width: calc(100% - var(--side-space) * 2);
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .site-header .container {
+      width: calc(100% - 128px);
+      max-width: none;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 30;
+      width: 100%;
+      height: 60px;
+      padding: 12px 0;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(255,255,255,.10), rgba(255,255,255,0));
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 4px 4px rgba(0,0,0,.25);
+      pointer-events: none;
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: auto;
+    }
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+}
+
+.logo-mark {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: .72;
+}
+
+.logo-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  opacity: 85%;
+}
+
+.logo-text {
+  font-family: revert;
+  font-size: 24px;
+  letter-spacing: -.02em;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1;
+  transition: color .25s ease;
+}
+.logo-text:hover{
+  color: rgba(255, 255, 255);
+}
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(28px, 5vw, 68px);
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: rgba(255,255,255,.78);
+      text-transform: uppercase;
+    }
+    .nav-links a { transition: color .25s ease; }
+    .nav-links a:hover { color: #fff; }
+
+    .menu-toggle {
+      display: block;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .menu-toggle span,
+    .menu-toggle::before,
+    .menu-toggle::after {
+      content: "";
+      display: block;
+      width: 18px;
+      height: 1px;
+      background: currentColor;
+      margin: 5px auto;
+      transition: transform .25s ease, opacity .25s ease;
+    }
+    body.menu-open .menu-toggle span { opacity: 0; }
+    body.menu-open .menu-toggle::before { transform: translateY(6px) rotate(45deg); }
+    body.menu-open .menu-toggle::after { transform: translateY(-6px) rotate(-45deg); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .privacy-section {
+      position: relative;
+      min-height: 100vh;
+      padding: 150px 0 96px;
+      background: #041122;
+      overflow: hidden;
+    }
+
+    .privacy-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 28% 0%, rgba(53,153,247,.12), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.018), transparent 260px);
+      pointer-events: none;
+    }
+
+    .privacy-wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .privacy-title {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(54px, 7vw, 80px);
+      line-height: 1;
+      letter-spacing: -.045em;
+      color: rgba(255,255,255,.95);
+      text-shadow: 0 0 18px rgba(53,153,247,.14), 0 8px 36px rgba(0,0,0,.45);
+    }
+
+    .last-updated {
+      margin-top: 42px;
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.5;
+      color: #FFFFFF;
+    }
+
+    .privacy-intro {
+      margin-top: 118px;
+      display: grid;
+      gap: 28px;
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: #FFFFFF;
+    }
+
+    .privacy-content {
+      margin-top: 42px;
+      display: grid;
+      gap: 48px;
+    }
+
+    .privacy-block h2 {
+      font-family: var(--sans);
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #FFFFFF;
+      margin-bottom: 26px;
+    }
+
+    .privacy-block p,
+    .privacy-block li {
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: #FFFFFF;
+    }
+
+    .privacy-block p + p { margin-top: 18px; }
+
+    .privacy-block ul {
+      margin-top: 18px;
+      padding-left: 22px;
+      color: #FFFFFF;
+    }
+
+    .privacy-block a {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      color: #FFFFFF;
+    }
+
+    .privacy-block strong {
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .site-footer { position: relative; z-index: 2; }
+    .footer-top {
+      background-color: #041122;
+      border-top: .5px solid rgba(255, 255, 255, .31);
+      padding: 68px 0 72px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 620px);
+      justify-content: space-between;
+      gap: 72px;
+      align-items: start;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .footer-links a {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: #D8D8D8;
+      transition: color .2s ease;
+    }
+    .footer-links a:hover,
+    .footer-links a:focus-visible { color: #fff; }
+    .footer-about h3 {
+      margin-bottom: 16px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: #D8D8D8;
+    }
+    .footer-about p {
+      max-width: 760px;
+      font-family: var(--sans);
+      font-size: 12px;
+      line-height: 1.9;
+      font-weight: 400;
+      color: #CCCCCC;
+    }
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      justify-content: flex-end;
+    }
+    .footer-social img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      opacity: .82;
+    }
+.footer-bottom {
+  background: #000;
+  padding: 26px 0;
+}
+
+.footer-bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.footer-legal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 48px;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: #BEBEBE;
+}
+
+.footer-email a {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  color: #BEBEBE;
+  transition: color .2s ease;
+}
+
+.footer-email a:hover {
+  color: #fff;
+}
+    .footer-legal a { color: inherit; transition: color .2s ease; }
+    .footer-legal a:hover,
+    .footer-legal a:focus-visible { color: #fff; }
+
+    @media (max-width: 760px) {
+      :root { --side-space: 24px; }
+      .site-header .container { width: calc(100% - 48px); }
+      .site-header {
+        height: 60px;
+        padding: 12px 0;
+        background: linear-gradient(to bottom, rgba(255,255,255,.10), rgba(255,255,255,0));
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+      }
+      .menu-toggle { display: block; }
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        left: 18px;
+        right: 18px;
+        display: grid;
+        gap: 0;
+        background: rgba(4, 14, 23, .96);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 10px;
+        transform: translateY(-16px);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform .25s ease, opacity .25s ease;
+      }
+      body.menu-open .nav-links {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .nav-links a { padding: 16px; border-radius: 12px; }
+      .nav-links a:hover { background: rgba(255,255,255,.06); }
+
+      .privacy-section { padding: 120px 0 78px; }
+      .privacy-title { font-size: 52px; }
+      .last-updated { margin-top: 30px; }
+      .privacy-intro { margin-top: 76px; }
+      .privacy-block h2 { font-size: 22px; }
+      .privacy-block p,
+      .privacy-block li { font-size: 15px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 42px; }
+      .footer-social { justify-content: flex-start; }
+      .footer-legal { gap: 22px 34px; }
+
+      .footer-links{
+        text-align: center;
+      }
+      .footer-links a{
+        font-size: 20px;
+      }
+      .footer-legal {
+        gap: 22px 34px;
+      }
+      .footer-about h3{
+        font-size: 20px;
+      }
+      .footer-about p{
+        font-size: 16px;
+      }
+      .footer-social img{
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      :root { --side-space: 18px; }
+      .privacy-title { font-size: 44px; }
+      .privacy-section { padding-top: 108px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="index.html" class="logo-wrap" aria-label="Jemm home">
+          <!-- <div class="logo-mark">
+            <img src="logo_jemm.png" alt="Jemm Logo">
+          </div> -->
+          <span class="logo-text">jemm.ɑi</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="product.html">Product</a>
+          <a href="company.html">Company</a>
+          <a href="partners.html">Partners</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
+      </div>
+    </header>
+
+    <section class="privacy-section">
+      <div class="container privacy-wrap">
+        <div class="reveal">
+          <h1 class="privacy-title">Privacy Policy</h1>
+          <p class="last-updated">Last updated: March 7, 2026</p>
+        </div>
+
+        <div class="privacy-intro reveal">
+          <p>Jemm Tec LLC ("Company," "we," "our" or "us") is fundamentally committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and, more importantly, how it is kept entirely local within your Jemm Arc system. This Privacy Policy applies to our Service, our websites, including jemm.ai, and our mobile applications.</p>
+          <p>By accessing or using our Service, you signify that you have read, understood and agree to our collection, storage, use and disclosure of your personal information as described in this Privacy Policy and our Terms of Service.</p>
+        </div>
+
+        <div class="privacy-content">
+          <section class="privacy-block reveal">
+            <h2>1. The Local AI Guarantee</h2>
+            <p>Unlike mass-market smart home assistants that stream your conversations and routines to corporate cloud servers, Jemm Arc is powered by local NVIDIA hardware. Natural language processing, video feed analysis, and automation logic happen locally. Your data remains in your home.</p>
+          </section>
+
+          <section class="privacy-block reveal">
+            <h2>2. Information We Collect</h2>
+            <p>The categories of information we collect or process locally can include:</p>
+            <ul>
+              <li><strong>Local Processing Data:</strong> Audio clips, video feeds from integrated cameras, and appliance status are processed locally by Jemm Arc and are not transmitted to our servers unless explicitly requested for support.</li>
+              <li><strong>Information you provide to us directly:</strong> We may collect personal information, such as your name, phone number, location, and e-mail address when you register for our Service or contact us at info@jemm.ai.</li>
+              <li><strong>Device and System Metrics:</strong> With your permission, we may collect anonymized telemetry data, such as system temperature, uptime, crash reports, to ensure the stability and health of your Jemm Arc hardware.</li>
+            </ul>
+          </section>
+
+          <section class="privacy-block reveal">
+            <h2>3. Zero Data Monetization</h2>
+            <p>We do not sell, rent, or trade your personal information. Our business model is based on hardware and software products, not data brokerage. Your private routines, conversations, and home layouts are treated as confidential information.</p>
+          </section>
+
+          <section class="privacy-block reveal">
+            <h2>4. Microphone Privacy</h2>
+            <p>Jemm Arc microphones only listen when activated by the designated wake word. Audio recording is disabled by default until the wake word is recognized locally on the edge device. You retain full control to physically or digitally mute microphones at any time.</p>
+          </section>
+
+          <section class="privacy-block reveal">
+            <h2>5. Sharing of Your Information</h2>
+            <p>We may share your minimal cloud-stored personal information, such as your account email, only in the following instances:</p>
+            <ul>
+              <li>As required by law or subpoena.</li>
+              <li>With third-party vendors, such as payment processors, solely as needed to perform services on our behalf.</li>
+              <li>With authorized integrators or builders, if you grant them access to configure your system.</li>
+            </ul>
+          </section>
+
+          <section class="privacy-block reveal">
+            <h2>6. Control Over Your Information</h2>
+            <p>You may update your profile information and data sharing preferences via the Jemm App or by emailing us at info@jemm.ai. You can delete your cloud account at any time, which will not impact the core local functionality of your Jemm Arc system.</p>
+          </section>
+
+          <section class="privacy-block reveal">
+            <h2>7. Security</h2>
+            <p>We implement bank-grade security protocols, including air-gapped network options and end-to-end encryption for any remote access requests. While we strive to use commercially acceptable means to protect your personal information, we cannot guarantee its absolute security over public networks.</p>
+          </section>
+
+          <section class="privacy-block reveal">
+            <h2>8. Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:info@jemm.ai">info@jemm.ai</a>.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="container footer-grid">
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="product.html">Jemm Arc</a>
+            <a href="about.html">About Us</a>
+            <a href="careers.html">Careers</a>
+            <a href="partners.html">Partners</a>
+          </div>
+          <div class="footer-about">
+            <h3>Jemm Tec LLC</h3>
+            <p>Jemm is your home's quiet intelligence. Unlike systems that rely on distant servers to think for you, Jemm lives where you do, inside your walls, on your network, on your terms. It learns your routines, responds to your voice, and keeps everything running whether the internet is up or not. No cloud in the middle. No one listening in. Just your home, working the way it always should have.</p>
+            <div class="footer-social">
+              <img src="twitter_icon.svg" alt="">
+              <img src="facebook_icon.svg" alt="">
+              <img src="instagram_icon.svg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+          <div class="footer-legal">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <span>Copyright @ 2026 Jemm Tech llc</span>
+          </div>
+          <div class="footer-email">
+            <a href="mailto:info@jemm.ai">info@jemm.ai</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const menuButton = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = document.body.classList.toggle('menu-open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        document.body.classList.remove('menu-open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll('.reveal').forEach(element => revealObserver.observe(element));
+  </script>
+</body>
+</html>
