@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <title>Terms of Service | Jemm</title>
+  <style>
+    :root {
+      --bg-deep: #02070c;
+      --bg-blue: #041122;
+      --text: #f3f0ec;
+      --muted: rgba(243, 240, 236, 0.72);
+      --line: rgba(255, 255, 255, 0.16);
+      --cyan: #16d7e8;
+      --blue: #4A8BF2;
+      --yellow: #FFE62B;
+      --button: rgba(27, 26, 29, .75);
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Lato", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --side-space: 10vw;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      background: #000;
+      color: var(--text);
+      font-family: var(--sans);
+      overflow-x: hidden;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    .page {
+      width: 100%;
+      background: #041122;
+    }
+
+    .container {
+      width: calc(100% - var(--side-space) * 2);
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* Header, matched to homepage/product page */
+    .site-header .container {
+      width: calc(100% - 128px);
+      max-width: none;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 30;
+      width: 100%;
+      height: 60px;
+      padding: 12px 0;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(255,255,255,.10), rgba(255,255,255,0));
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 4px 4px rgba(0,0,0,.25);
+      pointer-events: none;
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: auto;
+    }
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+}
+
+.logo-mark {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: .72;
+}
+
+.logo-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  opacity: 85%;
+}
+
+.logo-text {
+  font-family: revert;
+  font-size: 24px;
+  letter-spacing: -.02em;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1;
+  transition: color .25s ease;
+}
+.logo-text:hover{
+  color: rgba(255, 255, 255);
+}
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(28px, 5vw, 68px);
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: rgba(255,255,255,.78);
+      text-transform: uppercase;
+    }
+    .nav-links a { transition: color .25s ease; }
+    .nav-links a:hover { color: #fff; }
+
+    .menu-toggle {
+      display: block;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .menu-toggle span,
+    .menu-toggle::before,
+    .menu-toggle::after {
+      content: "";
+      display: block;
+      width: 18px;
+      height: 1px;
+      background: currentColor;
+      margin: 5px auto;
+      transition: transform .25s ease, opacity .25s ease;
+    }
+    body.menu-open .menu-toggle span { opacity: 0; }
+    body.menu-open .menu-toggle::before { transform: translateY(6px) rotate(45deg); }
+    body.menu-open .menu-toggle::after { transform: translateY(-6px) rotate(-45deg); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Terms page */
+    .terms-section {
+      position: relative;
+      min-height: 100vh;
+      padding: 150px 0 96px;
+      background: #041122;
+      overflow: hidden;
+    }
+
+    .terms-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 28% 0%, rgba(53,153,247,.12), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.018), transparent 260px);
+      pointer-events: none;
+    }
+
+    .terms-wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .terms-title {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(54px, 7vw, 80px);
+      line-height: 1;
+      letter-spacing: -.045em;
+      color: rgba(255,255,255,.95);
+      text-shadow: 0 0 18px rgba(53,153,247,.14), 0 8px 36px rgba(0,0,0,.45);
+    }
+
+    .last-updated {
+      margin-top: 42px;
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.5;
+      color: #FFFFFF;
+    }
+
+    .terms-intro {
+      margin-top: 118px;
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: #FFFFFF;
+    }
+
+    .notice-box {
+      margin-top: 28px;
+      padding: 18px 20px;
+      border: 1px solid #FF2D2D;
+      border-radius: 8px;
+      background: rgba(255, 0, 0, .18);
+      color: #FFFFFF;
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.55;
+      text-transform: uppercase;
+    }
+
+    .terms-content {
+      margin-top: 42px;
+      display: grid;
+      gap: 48px;
+    }
+
+    .terms-block h2 {
+      font-family: var(--sans);
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #FFFFFF;
+      margin-bottom: 26px;
+    }
+
+    .terms-block p,
+    .terms-block li {
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: #FFFFFF;
+    }
+
+    .terms-block p + p { margin-top: 18px; }
+
+    .terms-block ul {
+      margin-top: 18px;
+      padding-left: 22px;
+      color: #FFFFFF;
+    }
+
+    .terms-block a {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      color: #FFFFFF;
+    }
+
+    .terms-block strong {
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    /* Footer, matched to homepage/product page */
+    .site-footer { position: relative; z-index: 2; }
+    .footer-top {
+      background-color: #041122;
+      border-top: .5px solid rgba(255, 255, 255, .31);
+      padding: 68px 0 72px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 620px);
+      justify-content: space-between;
+      gap: 72px;
+      align-items: start;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .footer-links a {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: #D8D8D8;
+      transition: color .2s ease;
+    }
+    .footer-links a:hover,
+    .footer-links a:focus-visible { color: #fff; }
+    .footer-about h3 {
+      margin-bottom: 16px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: #D8D8D8;
+    }
+    .footer-about p {
+      max-width: 760px;
+      font-family: var(--sans);
+      font-size: 12px;
+      line-height: 1.9;
+      font-weight: 400;
+      color: #CCCCCC;
+    }
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      justify-content: flex-end;
+    }
+    .footer-social img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      opacity: .82;
+    }
+.footer-bottom {
+  background: #000;
+  padding: 26px 0;
+}
+
+.footer-bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.footer-legal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 48px;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: #BEBEBE;
+}
+
+.footer-email a {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  color: #BEBEBE;
+  transition: color .2s ease;
+}
+
+.footer-email a:hover {
+  color: #fff;
+}
+    .footer-legal a { color: inherit; transition: color .2s ease; }
+    .footer-legal a:hover,
+    .footer-legal a:focus-visible { color: #fff; }
+
+    @media (max-width: 760px) {
+      :root { --side-space: 24px; }
+      .site-header .container { width: calc(100% - 48px); }
+      .site-header {
+        height: 60px;
+        padding: 12px 0;
+        background: linear-gradient(to bottom, rgba(255,255,255,.10), rgba(255,255,255,0));
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+      }
+      .menu-toggle { display: block; }
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        left: 18px;
+        right: 18px;
+        display: grid;
+        gap: 0;
+        background: rgba(4, 14, 23, .96);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 10px;
+        transform: translateY(-16px);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform .25s ease, opacity .25s ease;
+      }
+      body.menu-open .nav-links {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .nav-links a { padding: 16px; border-radius: 12px; }
+      .nav-links a:hover { background: rgba(255,255,255,.06); }
+
+      .terms-section { padding: 120px 0 78px; }
+      .terms-title { font-size: 52px; }
+      .last-updated { margin-top: 30px; }
+      .terms-intro { margin-top: 76px; }
+      .notice-box { font-size: 14px; }
+      .terms-block h2 { font-size: 22px; }
+      .terms-block p,
+      .terms-block li { font-size: 15px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 42px; }
+      .footer-social { justify-content: flex-start; }
+      .footer-legal { gap: 22px 34px; }
+
+      .footer-links{
+        text-align: center;
+      }
+      .footer-links a{
+        font-size: 20px;
+      }
+      .footer-legal {
+        gap: 22px 34px;
+      }
+      .footer-about h3{
+        font-size: 20px;
+      }
+      .footer-about p{
+        font-size: 16px;
+      }
+      .footer-social img{
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      :root { --side-space: 18px; }
+      .terms-title { font-size: 44px; }
+      .terms-section { padding-top: 108px; }
+      .notice-box { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="index.html" class="logo-wrap" aria-label="Jemm home">
+          <!-- <div class="logo-mark">
+            <img src="logo_jemm.png" alt="Jemm Logo">
+          </div> -->
+          <span class="logo-text">jemm.ɑi</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="product.html">Product</a>
+          <a href="company.html">Company</a>
+          <a href="partners.html">Partners</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
+      </div>
+    </header>
+
+    <section class="terms-section">
+      <div class="container terms-wrap">
+        <div class="reveal">
+          <h1 class="terms-title">Terms of Service</h1>
+          <p class="last-updated">Last updated: March 7, 2026</p>
+        </div>
+
+        <div class="terms-intro reveal">
+          <p>Welcome to the website and online service of Jemm Tec LLC ("Company," "we," "our" or "us"). This page provides the terms by which you may access and use our website, our voice-controlled home automation hardware product ("Jemm Arc"), our online and hosted services, and related software (collectively, the "Service").</p>
+        </div>
+
+        <div class="notice-box reveal">
+          Important Notice: This Agreement contains a mandatory individual arbitration and class action/jury trial waiver provision that requires the use of arbitration on an individual basis to resolve disputes, rather than jury trials or class actions.
+        </div>
+
+        <div class="terms-content">
+          <section class="terms-block reveal">
+            <h2>1. Use of our Service</h2>
+            <p><strong>Eligibility:</strong> You may use the Service only if you can form a binding contract with Company, and only in compliance with this Agreement and all applicable local, state, national, and international laws.</p>
+            <p><strong>Company Accounts:</strong> Your account gives you access to the Service. You must provide accurate information and keep your password secure. You are solely responsible for the activity that occurs under your account. By providing your email (info@jemm.ai), you consent to us sending Service-related notices to that address.</p>
+          </section>
+
+          <section class="terms-block reveal">
+            <h2>2. Service Rules</h2>
+            <p>You agree not to engage in any of the following prohibited activities:</p>
+            <ul>
+              <li>Copying, distributing, or disclosing any part of the Service in any medium.</li>
+              <li>Attempting to interfere with, compromise the system integrity, or decipher any transmissions to or from the servers running the Service.</li>
+              <li>Uploading invalid data, viruses, worms, or other software agents.</li>
+              <li>Bypassing the measures we may use to prevent or restrict access to the Service.</li>
+            </ul>
+          </section>
+
+          <section class="terms-block reveal">
+            <h2>3. Proprietary Rights</h2>
+            <p>The Service and all materials therein, including Software, images, text, graphics, illustrations, logos, patents, trademarks, service marks, copyrights, and Jemm Arc hardware architectures (the "Company Content"), and all Intellectual Property Rights related thereto, are the exclusive property of Company and its licensors.</p>
+          </section>
+
+          <section class="terms-block reveal">
+            <h2>4. Hardware and Software Licensing</h2>
+            <p>Company hereby grants you a non-exclusive, non-transferable, revocable license to use a compiled code copy of the Software on your Jemm Arc device and on mobile devices owned solely by you. You may not modify, disassemble, decompile, or reverse engineer the Software or Hardware.</p>
+          </section>
+
+          <section class="terms-block reveal">
+            <h2>5. Privacy &amp; Local Data Processing</h2>
+            <p>Your use of the Service is subject to our <a href="privacy.html">Privacy Policy</a>. We strictly prioritize local processing for home automation routines to ensure data privacy.</p>
+          </section>
+
+          <section class="terms-block reveal">
+            <h2>6. Limitation of Liability</h2>
+            <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL COMPANY, ITS AFFILIATES, AGENTS, DIRECTORS, EMPLOYEES, SUPPLIERS OR LICENSORS BE LIABLE FOR ANY INDIRECT, PUNITIVE, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR EXEMPLARY DAMAGES, INCLUDING WITHOUT LIMITATION DAMAGES FOR LOSS OF PROFITS, GOODWILL, USE, DATA OR OTHER INTANGIBLE LOSSES, ARISING OUT OF OR RELATING TO THE USE OF, OR INABILITY TO USE, THIS SERVICE.</p>
+          </section>
+
+          <section class="terms-block reveal">
+            <h2>7. Governing Law and Arbitration</h2>
+            <p>This Agreement shall be governed by the internal substantive laws of the State of Delaware, United States, without respect to its conflict of laws principles. For any dispute with Company, you agree to first contact us at <a href="mailto:info@jemm.ai">info@jemm.ai</a> and attempt to resolve the dispute with us informally. In the unlikely event that Company has not been able to resolve a dispute it has with you, we each agree to resolve any claim, dispute, or controversy arising out of or in connection with or relating to this Agreement by binding arbitration by JAMS.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="container footer-grid">
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="product.html">Jemm Arc</a>
+            <a href="company.html">About Us</a>
+            <a href="careers.html">Careers</a>
+            <a href="partners.html">Partners</a>
+          </div>
+          <div class="footer-about">
+            <h3>Jemm Tec LLC</h3>
+            <p>Jemm is your home's quiet intelligence. Unlike systems that rely on distant servers to think for you, Jemm lives where you do, inside your walls, on your network, on your terms. It learns your routines, responds to your voice, and keeps everything running whether the internet is up or not. No cloud in the middle. No one listening in. Just your home, working the way it always should have.</p>
+            <div class="footer-social">
+              <img src="twitter_icon.svg" alt="">
+              <img src="facebook_icon.svg" alt="">
+              <img src="instagram_icon.svg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+          <div class="footer-legal">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <span>Copyright @ 2026 Jemm Tech llc</span>
+          </div>
+          <div class="footer-email">
+            <a href="mailto:info@jemm.ai">info@jemm.ai</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const menuButton = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = document.body.classList.toggle('menu-open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        document.body.classList.remove('menu-open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll('.reveal').forEach(element => revealObserver.observe(element));
+  </script>
+</body>
+</html>
