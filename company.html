@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <title>About Jemm</title>
+  <style>
+    :root {
+      --bg-deep: #02070c;
+      --bg-blue: #041122;
+      --text: #f3f0ec;
+      --muted: rgba(243, 240, 236, 0.72);
+      --line: rgba(255, 255, 255, 0.16);
+      --cyan: #16d7e8;
+      --blue: #4A8BF2;
+      --yellow: #FFE62B;
+      --button: rgba(27, 26, 29, .75);
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Lato", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --side-space: 10vw;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      background: #000;
+      color: var(--text);
+      font-family: var(--sans);
+      overflow-x: hidden;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .page { width: 100%; background: #000; }
+    .container {
+      width: calc(100% - var(--side-space) * 2);
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* Header, matched to homepage/product page */
+    .site-header .container {
+      width: calc(100% - 128px);
+      max-width: none;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 30;
+      width: 100%;
+      height: 60px;
+      padding: 12px 0;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(255,255,255,.10), rgba(255,255,255,0));
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 4px 4px rgba(0,0,0,.25);
+      pointer-events: none;
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: auto;
+    }
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+}
+
+.logo-mark {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: .72;
+}
+
+.logo-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  opacity: 85%;
+}
+
+.logo-text {
+  font-family: revert;
+  font-size: 24px;
+  letter-spacing: -.02em;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1;
+  transition: color .25s ease;
+}
+.logo-text:hover{
+  color: rgba(255, 255, 255);
+}
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(28px, 5vw, 68px);
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: rgba(255,255,255,.78);
+      text-transform: uppercase;
+    }
+    .nav-links a { transition: color .25s ease; }
+    .nav-links a:hover { color: #fff; }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .menu-toggle span,
+    .menu-toggle::before,
+    .menu-toggle::after {
+      content: "";
+      display: block;
+      width: 18px;
+      height: 1px;
+      background: currentColor;
+      margin: 5px auto;
+      transition: transform .25s ease, opacity .25s ease;
+    }
+    body.menu-open .menu-toggle span { opacity: 0; }
+    body.menu-open .menu-toggle::before { transform: translateY(6px) rotate(45deg); }
+    body.menu-open .menu-toggle::after { transform: translateY(-6px) rotate(-45deg); }
+
+    /* Shared */
+    .section-title {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(34px, 4.2vw, 54px);
+      line-height: 1.1;
+      letter-spacing: -.035em;
+      color: rgba(255,255,255,.92);
+    }
+
+    .section-copy {
+      margin-top: 18px;
+      font-size: 16px;
+      line-height: 1.85;
+      color: #CCCCCC;
+    }
+
+    .pill-button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 30px;
+      border: .5px solid transparent;
+      border-radius: 999px;
+      background:
+        linear-gradient(rgba(27, 26, 29, .75), rgba(27, 26, 29, .75)) padding-box,
+        linear-gradient(135deg, rgba(255,255,255,.5) 0%, rgba(153,153,153,.08) 49%, rgba(255,255,255,.5) 100%) border-box;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      box-shadow: 0 16px 28px rgba(0,0,0,.22);
+      cursor: pointer;
+      transition: background-position .42s ease, color .25s ease, box-shadow .25s ease;
+    }
+    .pill-button:hover,
+    .pill-button:focus-visible {
+      color: var(--yellow);
+      background:
+        linear-gradient(rgba(27, 26, 29, .88), rgba(27, 26, 29, .88)) padding-box,
+        linear-gradient(135deg, rgba(255,230,43,.5) 0%, rgba(255,230,43,.08) 49%, rgba(255,230,43,.5) 100%) border-box;
+      box-shadow: 0 16px 28px rgba(0,0,0,.22), 0 0 18px rgba(255,230,43,.12);
+      outline: none;
+    }
+
+    .audience-style-button {
+      min-height: 44px;
+      padding-inline: 28px;
+      font-size: 12px;
+      color: #fff;
+      border: .5px solid transparent;
+      background:
+        linear-gradient(rgba(27,26,29,.75), rgba(27,26,29,.75)) padding-box,
+        linear-gradient(135deg, rgba(255,255,255,.15) 0%, rgba(255,255,255,.08) 49%, rgba(255,255,255,.15) 100%) border-box;
+      overflow: hidden;
+      isolation: isolate;
+      box-shadow: 0 16px 28px rgba(0,0,0,.22), 0 0 18px rgba(74,139,242,.16);
+      transition: color .32s ease, box-shadow .32s ease;
+    }
+
+    .audience-style-button::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: rgba(74,139,242,.78);
+      z-index: -2;
+    }
+
+    .audience-style-button::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: #FFE62B;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform .42s ease;
+      z-index: -1;
+    }
+
+    .audience-style-button:hover,
+    .audience-style-button:focus-visible {
+      transform: none;
+      color: #061522;
+      box-shadow: 0 16px 28px rgba(0,0,0,.22), 0 0 18px rgba(255,230,43,.16);
+    }
+
+    .audience-style-button:hover::after,
+    .audience-style-button:focus-visible::after { transform: scaleX(1); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hero */
+    .about-hero {
+      position: relative;
+      min-height: 620px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: #02070c;
+    }
+
+    .about-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.52)),
+        url('about_hero_bg.jpg');
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.02);
+    }
+
+    .about-hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 180px;
+      background: linear-gradient(to bottom, transparent, #041122);
+      pointer-events: none;
+    }
+
+    .about-hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      width: min(100% - 48px, 720px);
+      transform: translateY(20px);
+    }
+
+    .about-hero h1 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(54px, 7vw, 80px);
+      line-height: 1;
+      letter-spacing: -.04em;
+      color: rgba(255,255,255,.94);
+      text-shadow: 0 6px 28px rgba(0,0,0,.5);
+    }
+
+    .about-hero p {
+      margin-top: 18px;
+      font-size: 16px;
+      line-height: 1.5;
+      color: rgba(255,255,255,.86);
+      text-shadow: 0 3px 18px rgba(0,0,0,.72);
+    }
+
+    /* Mission */
+    .mission {
+      background: #041122;
+      padding: 112px 0 120px;
+      text-align: center;
+    }
+
+    .mission .section-copy {
+      max-width: 860px;
+      margin: 22px auto 0;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .mission-line {
+      margin-top: 32px;
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 1.25;
+      color: #FFE62B;
+    }
+
+    /* Technology */
+    .technology {
+      position: relative;
+      min-height: 520px;
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .technology::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.58), rgba(4,17,34,.2), rgba(0,0,0,.72)),
+        url('technology_bg.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: .94;
+    }
+
+    .technology::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,.24), rgba(0,0,0,.32));
+      pointer-events: none;
+    }
+
+    .technology-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(48px, 8vw, 120px);
+      align-items: center;
+    }
+
+    .tech-copy { max-width: 470px; }
+    .tech-copy .section-copy { font-size: 12px; max-width: 440px; }
+
+    .tech-icons {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      max-width: 430px;
+    }
+
+    .tech-icon-card {
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+      text-align: center;
+      color: #D8D8D8;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .tech-icon-card img {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 12px rgba(255,255,255,.18));
+    }
+
+    .tech-list {
+      padding: 28px 32px;
+      border-radius: 12px;
+      background: rgba(4,17,34,.50);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 18px 60px rgba(0,0,0,.28);
+    }
+
+    .tech-list ul {
+      display: grid;
+      gap: 10px;
+      padding-left: 18px;
+      color: #CCCCCC;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* Team */
+    .team {
+      background: #041122;
+      padding: 120px 0 132px;
+      text-align: center;
+    }
+
+    .team-kicker {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(34px, 4.2vw, 54px);
+      line-height: 1.1;
+      letter-spacing: -.035em;
+      color: rgba(255,255,255,.92);
+    }
+
+    .team-intro {
+      width: min(100%, 820px);
+      margin: 22px auto 0;
+      color: #CCCCCC;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .founders {
+      margin: 62px auto 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 72px;
+      max-width: 760px;
+    }
+
+    .founder-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 4px;
+      background: rgba(255,255,255,.05);
+    }
+
+    .person-name {
+      margin-top: 20px;
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 26px;
+      line-height: 1.1;
+      color: #fff;
+    }
+
+    .person-role {
+      margin-top: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #66ACF8;
+    }
+
+    .person-bio {
+      margin: 10px auto 0;
+      max-width: 310px;
+      color: #CCCCCC;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .team-grid {
+      margin: 68px auto 0;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 34px 26px;
+      max-width: 920px;
+    }
+
+    .member-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 4px;
+      background: rgba(255,255,255,.05);
+    }
+
+    .member-card .person-name {
+      margin-top: 13px;
+      font-size: 16px;
+    }
+
+    .member-card .person-role {
+      font-size: 12px;
+      color: #66ACF8;
+    }
+
+    .team-action { margin-top: 52px; }
+
+    /* Headquarters */
+    .headquarter {
+      position: relative;
+      min-height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(0,0,0,.22), rgba(0,0,0,.42)),
+        url('headquarter_bg.jpg');
+      background-size: cover;
+      background-position: center;
+      padding: 0;
+    }
+
+    .headquarter-inner {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .headquarter-copy p {
+      margin-top: 8px;
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: rgba(255,255,255,.95);
+    }
+
+    .city-line {
+      display: none;
+    }
+
+    /* Footer, matched to homepage/product page */
+    .site-footer { position: relative; z-index: 2; }
+    .footer-top {
+      background-color: #041122;
+      border-top: .5px solid rgba(255, 255, 255, .31);
+      padding: 68px 0 72px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 620px);
+      justify-content: space-between;
+      gap: 72px;
+      align-items: start;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .footer-links a {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: #D8D8D8;
+      transition: color .2s ease;
+    }
+    .footer-links a:hover,
+    .footer-links a:focus-visible { color: #fff; }
+    .footer-about h3 {
+      margin-bottom: 16px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: #D8D8D8;
+    }
+    .footer-about p {
+      max-width: 760px;
+      font-family: var(--sans);
+      font-size: 12px;
+      line-height: 1.9;
+      font-weight: 400;
+      color: #CCCCCC;
+    }
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      justify-content: flex-end;
+    }
+    .footer-social img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      opacity: .82;
+    }
+.footer-bottom {
+  background: #000;
+  padding: 26px 0;
+}
+
+.footer-bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.footer-legal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 48px;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: #BEBEBE;
+}
+
+.footer-email a {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  color: #BEBEBE;
+  transition: color .2s ease;
+}
+
+.footer-email a:hover {
+  color: #fff;
+}
+    .footer-legal a { color: inherit; transition: color .2s ease; }
+    .footer-legal a:hover,
+    .footer-legal a:focus-visible { color: #fff; }
+
+    @media (max-width: 1000px) {
+      .technology {
+        padding: 80px 0;
+      }
+
+      .tech-copy {
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .tech-copy .section-copy {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .tech-icons {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .technology-grid,
+      .headquarter-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .tech-copy,
+      .tech-copy .section-copy {
+        max-width: 100%;
+      }
+
+      .team-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root { --side-space: 24px; }
+      .site-header .container { width: calc(100% - 48px); }
+      .site-header {
+        height: 60px;
+        padding: 12px 0;
+        background: linear-gradient(to bottom, rgba(255,255,255,.10), rgba(255,255,255,0));
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+      }
+      .menu-toggle { display: block; }
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        left: 18px;
+        right: 18px;
+        display: grid;
+        gap: 0;
+        background: rgba(4, 14, 23, .96);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 10px;
+        transform: translateY(-16px);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform .25s ease, opacity .25s ease;
+      }
+      body.menu-open .nav-links {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .nav-links a { padding: 16px; border-radius: 12px; }
+      .nav-links a:hover { background: rgba(255,255,255,.06); }
+
+      .about-hero { min-height: 560px; }
+      .about-hero h1 { font-size: 52px; }
+      .about-hero p { font-size: 14px; }
+
+      .mission,
+      .team { padding-block: 84px; }
+      .headquarter { padding: 64px 0 84px; }
+
+      .technology { min-height: auto; padding: 80px 0; }
+      .technology-grid { gap: 44px; }
+      .tech-copy { text-align: center; }
+      .tech-copy .section-copy { margin-left: auto; margin-right: auto; }
+      .tech-icons {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        max-width: 430px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .tech-icon-card { justify-items: center; text-align: center; }
+
+      .founders { grid-template-columns: 1fr; gap: 54px; }
+      .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 20px; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 42px; }
+      .footer-legal { gap: 22px 34px; }
+    }
+
+    @media (max-width: 480px) {
+      .tech-icons {
+        grid-template-columns: 1fr;
+        max-width: none;
+      }
+
+      .tech-icon-card {
+        grid-template-columns: 54px 1fr;
+        justify-items: start;
+        text-align: left;
+        width: min(100%, 240px);
+        margin: 0 auto;
+      }
+
+      :root { --side-space: 18px; }
+      .section-title { font-size: 32px; }
+      .about-hero h1 { font-size: 44px; }
+      .team-grid { grid-template-columns: 1fr; }
+      .pill-button { min-height: 46px; padding-inline: 23px; font-size: 16px; }
+    }
+  
+/* ===== Meet the people section ===== */
+
+.people-marquee{
+  position:relative;
+  margin-top:72px;
+  overflow:hidden;
+  width:100vw;
+  left:50%;
+  transform:translateX(-50%);
+  mask-image:linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image:linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.people-track{
+  display:flex;
+  gap:28px;
+  width:max-content;
+  animation:peopleScroll 38s linear infinite;
+  padding-inline:28px;
+}
+
+.people-marquee:hover .people-track{
+  animation-play-state:paused;
+}
+
+@keyframes peopleScroll{
+  from{ transform:translateX(0); }
+  to{ transform:translateX(-50%); }
+}
+
+.qa-card{
+  position:relative;
+  width:380px;
+  height:480px;
+  perspective:1400px;
+  flex-shrink:0;
+}
+
+.qa-card-inner{
+  position:relative;
+  width:100%;
+  height:100%;
+  transition:transform .8s cubic-bezier(.22,.61,.36,1);
+  transform-style:preserve-3d;
+  cursor:pointer;
+}
+
+.qa-card.flipped .qa-card-inner{
+  transform:rotateY(180deg);
+}
+
+.qa-face{
+  position:absolute;
+  inset:0;
+  border-radius:18px;
+  overflow:hidden;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  background:linear-gradient(180deg, rgba(10,23,48,.92), rgba(4,12,26,.96));
+  border:1px solid rgba(140,184,255,.22);
+  box-shadow:0 0 0 1px rgba(255,255,255,.04) inset,0 0 34px rgba(74,139,242,.14);
+  padding:18px;
+}
+
+.qa-face::before{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.10);
+  pointer-events:none;
+}
+
+.qa-front{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:26px;
+}
+
+.qa-question{
+  max-width:250px;
+  font-size:20px;
+  font-weight:700;
+  line-height:1.5;
+  color:#F4F4F4;
+}
+
+.qa-icon{
+  width:56px;
+  opacity:.9;
+}
+
+.qa-tap{
+  font-size:16px;
+  color:rgba(255,255,255,.68);
+}
+
+.qa-back{
+  transform:rotateY(180deg);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+.qa-role{
+  margin-top:18px;
+  font-size:18px;
+  font-weight:700;
+  color:#66ACF8;
+}
+
+.qa-photo{
+  width:250px;
+  height:250px;
+  object-fit:cover;
+  border-radius:4px;
+  margin-top:28px;
+}
+
+.qa-name{
+  margin-top:18px;
+  font-size:22px;
+  font-weight:700;
+  color:#fff;
+}
+
+.qa-answer{
+  margin-top:12px;
+  max-width:300px;
+  font-size:15px;
+  line-height:1.7;
+  color:#CCCCCC;
+}
+
+.team-action-copy{
+  text-align:center;
+  font-size:16px;
+  color:#CCCCCC;
+}
+
+@media (max-width:760px){
+  .qa-card{
+    width:300px;
+    height:430px;
+  }
+
+  .qa-photo{
+    width:200px;
+    height:200px;
+  }
+}
+
+
+/* ===== Fix team carousel visibility / full track ===== */
+
+.team{
+  position:relative;
+  overflow:hidden;
+}
+
+.people-marquee{
+  width:100vw !important;
+  max-width:100vw !important;
+  margin-left:calc(50% - 50vw) !important;
+  margin-right:calc(50% - 50vw) !important;
+  left:auto !important;
+  transform:none !important;
+  overflow:hidden !important;
+  padding:0 !important;
+
+  mask-image:linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%) !important;
+  -webkit-mask-image:linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%) !important;
+}
+
+.people-track{
+  display:flex !important;
+  gap:28px !important;
+  width:max-content !important;
+  min-width:max-content !important;
+  padding-left:5vw !important;
+  padding-right:5vw !important;
+  animation:peopleScrollFixed 56s linear infinite !important;
+}
+
+.people-marquee:hover .people-track{
+  animation-play-state:paused !important;
+}
+
+@keyframes peopleScrollFixed{
+  from{
+    transform:translateX(0);
+  }
+  to{
+    transform:translateX(calc(-50% - 14px));
+  }
+}
+
+.qa-card{
+  width:380px !important;
+  height:480px !important;
+  flex:0 0 380px !important;
+}
+
+.qa-icon{
+  width:58px !important;
+  height:58px !important;
+  color:#ffffff !important;
+  opacity:.92;
+}
+
+@media (max-width:760px){
+  .people-track{
+    gap:18px !important;
+    padding-left:24px !important;
+    padding-right:24px !important;
+    animation-duration:48s !important;
+  }
+
+  .qa-card{
+    width:300px !important;
+    height:430px !important;
+    flex-basis:300px !important;
+  }
+}
+
+
+/* ===== v3 fix flip clipping edges ===== */
+
+/* Give the 3D rotation extra breathing room so card corners are not clipped */
+.people-marquee{
+  padding-top: 34px !important;
+  padding-bottom: 34px !important;
+}
+
+.people-track{
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+/* Perspective needs to live on a non-clipping parent */
+.qa-card{
+  overflow: visible !important;
+  padding: 10px !important;
+}
+
+/* Keep the visible card size the same while allowing rotation space */
+.qa-card-inner{
+  width: calc(100% - 20px) !important;
+  height: calc(100% - 20px) !important;
+  margin: 10px !important;
+  transform-origin: center center !important;
+}
+
+/* Do not clip the rotating 3D layer */
+.qa-face{
+  overflow: hidden !important;
+  transform: translateZ(0);
+}
+
+.qa-back{
+  transform: rotateY(180deg) translateZ(1px) !important;
+}
+
+.qa-front{
+  transform: translateZ(1px) !important;
+}
+
+
+/* ===== v4 fix back card text clipping ===== */
+
+.qa-card{
+  height:560px !important;
+  flex-basis:380px !important;
+}
+
+.qa-face{
+  overflow:visible !important;
+}
+
+.qa-card-inner{
+  height:calc(100% - 20px) !important;
+}
+
+.qa-back{
+  justify-content:flex-start !important;
+  padding:22px 24px 28px !important;
+}
+
+.qa-role{
+  margin-top:16px !important;
+}
+
+.qa-photo{
+  width:220px !important;
+  height:220px !important;
+  margin-top:24px !important;
+}
+
+.qa-name{
+  margin-top:18px !important;
+  font-size:22px !important;
+  line-height:1.2 !important;
+}
+
+.qa-answer{
+  margin-top:12px !important;
+  max-width:310px !important;
+  font-size:15px !important;
+  line-height:1.55 !important;
+  padding-bottom:8px !important;
+}
+
+@media (max-width:760px){
+  .qa-card{
+    width:300px !important;
+    height:520px !important;
+    flex-basis:300px !important;
+  }
+
+  .qa-photo{
+    width:190px !important;
+    height:190px !important;
+  }
+
+  .qa-answer{
+    font-size:14px !important;
+    line-height:1.5 !important;
+  }
+}
+
+
+/* ===== v5 draggable marquee ===== */
+
+.people-marquee{
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.people-marquee.dragging{
+  cursor: grabbing;
+}
+
+.people-track{
+  will-change: transform;
+}
+
+
+/* ===== v6 real draggable carousel fix ===== */
+
+/* Disable CSS keyframe animation completely, JS controls transform now */
+.people-track{
+  animation:none !important;
+  transition:none !important;
+  will-change:transform !important;
+}
+
+.people-marquee{
+  cursor:grab !important;
+  user-select:none !important;
+  -webkit-user-select:none !important;
+  touch-action:pan-y !important;
+}
+
+.people-marquee.dragging{
+  cursor:grabbing !important;
+}
+
+.people-marquee.dragging .qa-card-inner{
+  pointer-events:none;
+}
+
+.qa-card img,
+.qa-card svg{
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+
+
+/* ===== v9 smaller cards ===== */
+
+.qa-card{
+  width:320px !important;
+  height:480px !important;
+  flex:0 0 320px !important;
+}
+
+.qa-question{
+  max-width:220px !important;
+  font-size:18px !important;
+}
+
+.qa-photo{
+  width:190px !important;
+  height:190px !important;
+  margin-top:22px !important;
+}
+
+.qa-role{
+  font-size:16px !important;
+}
+
+.qa-name{
+  font-size:20px !important;
+}
+
+.qa-answer{
+  max-width:250px !important;
+  font-size:14px !important;
+  line-height:1.5 !important;
+}
+
+.qa-icon{
+  width:48px !important;
+  height:48px !important;
+}
+
+@media (max-width:760px){
+  .qa-card{
+    width:270px !important;
+    height:430px !important;
+    flex-basis:270px !important;
+  }
+
+  .qa-photo{
+    width:165px !important;
+    height:165px !important;
+  }
+
+  .qa-question{
+    font-size:16px !important;
+  }
+
+  .qa-answer{
+    font-size:13px !important;
+    max-width:220px !important;
+  }
+}
+
+
+/* ===== Flow label ===== */
+
+.qa-flow{
+  margin-bottom:18px;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#66ACF8;
+  opacity:.92;
+}
+
+
+
+/* ===== v13 yellow glow only when flipped ===== */
+
+/* Keep Flow + front state blue */
+.qa-flow{
+  color:#66ACF8 !important;
+}
+
+/* Only back side gets yellow glow */
+.qa-card[data-card-key="1"].flipped .qa-back,
+.qa-card[data-card-key="2"].flipped .qa-back{
+  border:1px solid rgba(255,230,43,.26) !important;
+
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.05) inset,
+    0 0 38px rgba(255,230,43,.18),
+    0 0 90px rgba(255,230,43,.08) !important;
+}
+
+/* Back side role title turns yellow */
+.qa-card[data-card-key="1"].flipped .qa-role,
+.qa-card[data-card-key="2"].flipped .qa-role{
+  color:#FFE62B !important;
+}
+
+</style>
+</head>
+<body>
+  <main class="page">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="index.html" class="logo-wrap" aria-label="Jemm home">
+          <!-- <div class="logo-mark">
+            <img src="logo_jemm.png" alt="Jemm Logo">
+          </div> -->
+          <span class="logo-text">jemm.ɑi</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="product.html">Product</a>
+          <a href="company.html">Company</a>
+          <a href="partners.html">Partners</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
+      </div>
+    </header>
+
+    <section class="about-hero">
+      <div class="about-hero-content reveal">
+        <h1>About Jemm</h1>
+        <p>Local-first home automation.<br>No cloud, no tracking, no compromise.</p>
+      </div>
+    </section>
+
+    <section class="mission">
+      <div class="container reveal">
+        <h2 class="section-title">Mission &amp; Vision</h2>
+        <p class="section-copy">We started Jemm because home automation had gone in the wrong direction. Too many systems depend on someone else's server, stop working when the internet goes down, and collect data you never agreed to share.</p>
+        <p class="mission-line">Your home should be yours.<br>That's what we're building.</p>
+      </div>
+    </section>
+
+    <section class="technology">
+      <div class="container technology-grid">
+        <div class="tech-copy reveal">
+          <h2 class="section-title">Our Technology</h2>
+          <p class="section-copy">Jemm Arc is built on proprietary inference technology developed in-house. From model training to local deployment, every layer of the stack is designed and maintained by our team.</p>
+          <div class="tech-icons">
+            <div class="tech-icon-card"><img src="tech_patent_icon.svg" alt=""><span>20+ Patents</span></div>
+            <div class="tech-icon-card"><img src="tech_ai_icon.svg" alt=""><span>Local AI OS</span></div>
+            <div class="tech-icon-card"><img src="tech_privacy_icon.svg" alt=""><span>Privacy System</span></div>
+          </div>
+        </div>
+
+        <div class="tech-list reveal">
+          <ul>
+            <li>Patented inference neural inference engine I/O</li>
+            <li>Patent pending multi-device voice processing pipeline</li>
+            <li>Local automation orchestration layer with conditional logic engine</li>
+            <li>Centralized model training infrastructure with edge deployment</li>
+            <li>Encrypted local runtime environment with zero telemetry</li>
+            <li>Adaptive device communication protocol for proprietary wake-word detection with on-device processing</li>
+            <li>Multi-zone automation synchronization layer</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    
+<section class="team">
+  <div class="container">
+    <div class="reveal">
+      <h2 class="team-kicker">Meet the people behind your home.</h2>
+      <p class="team-intro">No black boxes. Just real people, real expertise, and real accountability at every stage.</p>
+    </div>
+
+    <div class="people-marquee reveal">
+      <div class="people-track">
+<article class="qa-card" data-card-key="1">
+  <div class="qa-card-inner">
+    <div class="qa-face qa-front">
+      <p class="qa-flow">Flow 01</p>
+      <h3 class="qa-question">Who's behind Jemm's vision and direction?</h3>
+      <img class="qa-icon" src="flow_icon.svg" alt="">
+      <p class="qa-tap">[Tap to flip]</p>
+    </div>
+    <div class="qa-face qa-back">
+      <p class="qa-role">President</p>
+      <img class="qa-photo" src="team_christo_georgiev.jpg">
+      <h3 class="qa-name">Christo Georgiev</h3>
+      <p class="qa-answer">A serial entrepreneur with deep experience building and scaling technology companies — focused on making local-first automation the new standard.</p>
+    </div>
+  </div>
+</article>
+
+<article class="qa-card" data-card-key="2">
+  <div class="qa-card-inner">
+    <div class="qa-face qa-front">
+      <p class="qa-flow">Flow 02</p>
+      <h3 class="qa-question">How do I know everything is running smoothly?</h3>
+      <img class="qa-icon" src="flow_icon.svg" alt="">
+      <p class="qa-tap">[Tap to flip]</p>
+    </div>
+    <div class="qa-face qa-back">
+      <p class="qa-role">General Manager</p>
+      <img class="qa-photo" src="team_alex_levenston.jpg">
+      <h3 class="qa-name">Alex Levenston</h3>
+      <p class="qa-answer">Alex oversees day-to-day product and engineering execution, making sure every system performs exactly as it should.</p>
+    </div>
+  </div>
+</article>
+
+<article class="qa-card" data-card-key="3">
+  <div class="qa-card-inner">
+    <div class="qa-face qa-front">
+      <p class="qa-flow">Flow 03</p>
+      <h3 class="qa-question">How does Jemm figure out what my home needs?</h3>
+      <img class="qa-icon" src="flow_icon.svg" alt="">
+      <p class="qa-tap">[Tap to flip]</p>
+    </div>
+    <div class="qa-face qa-back">
+      <p class="qa-role">Product Manager</p>
+      <img class="qa-photo" src="team_nadia_petrov.jpg">
+      <h3 class="qa-name">Nadia Petrov</h3>
+      <p class="qa-answer">We start with a discovery session to understand your routines, devices, and preferences — so the system is built around you from day one.</p>
+    </div>
+  </div>
+</article>
+
+<article class="qa-card" data-card-key="4">
+  <div class="qa-card-inner">
+    <div class="qa-face qa-front">
+      <p class="qa-flow">Flow 04</p>
+      <h3 class="qa-question">Who sets up the system in my home?</h3>
+      <img class="qa-icon" src="flow_icon.svg" alt="">
+      <p class="qa-tap">[Tap to flip]</p>
+    </div>
+    <div class="qa-face qa-back">
+      <p class="qa-role">Software Architect</p>
+      <img class="qa-photo" src="team_marcus_webb.jpg">
+      <h3 class="qa-name">Marcus Webb</h3>
+      <p class="qa-answer">Our engineering team handles the full deployment and device integration, making sure everything works together seamlessly.</p>
+    </div>
+  </div>
+</article>
+
+<article class="qa-card" data-card-key="5">
+  <div class="qa-card-inner">
+    <div class="qa-face qa-front">
+      <p class="qa-flow">Flow 05</p>
+      <h3 class="qa-question">How does Jemm learn my habits?</h3>
+      <img class="qa-icon" src="flow_icon.svg" alt="">
+      <p class="qa-tap">[Tap to flip]</p>
+    </div>
+    <div class="qa-face qa-back">
+      <p class="qa-role">Artificial Intelligence Engineer</p>
+      <img class="qa-photo" src="team_jordan_blake.jpg">
+      <h3 class="qa-name">Jordan Blake</h3>
+      <p class="qa-answer">Our AI team trains and fine-tunes the local model based on your household's patterns — entirely on-device, never in the cloud.</p>
+    </div>
+  </div>
+</article>
+
+<article class="qa-card" data-card-key="6">
+  <div class="qa-card-inner">
+    <div class="qa-face qa-front">
+      <p class="qa-flow">Flow 06</p>
+      <h3 class="qa-question">What if I want to change something?</h3>
+      <img class="qa-icon" src="flow_icon.svg" alt="">
+      <p class="qa-tap">[Tap to flip]</p>
+    </div>
+    <div class="qa-face qa-back">
+      <p class="qa-role">UI/UX Designer</p>
+      <img class="qa-photo" src="team_li_tang_chen.jpg">
+      <h3 class="qa-name">Li Tang Chen</h3>
+      <p class="qa-answer">The interface is designed to make adjustments simple and intuitive. Your preferences, your way, anytime.</p>
+    </div>
+  </div>
+</article>
+
+<article class="qa-card" data-card-key="1">
+  <div class="qa-card-inner">
+    <div class="qa-face qa-front">
+      <p class="qa-flow">Flow 01</p>
+      <h3 class="qa-question">Who's behind Jemm's vision and direction?</h3>
+      <img class="qa-icon" src="flow_icon.svg" alt="">
+      <p class="qa-tap">[Tap to flip]</p>
+    </div>
+    <div class="qa-face qa-back">
+      <p class="qa-role">President</p>
+      <img class="qa-photo" src="team_christo_georgiev.jpg">
+      <h3 class="qa-name">Christo Georgiev</h3>
+      <p class="qa-answer">A serial entrepreneur with deep experience building and scaling technology companies — focused on making local-first automation the new standard.</p>
+    </div>
+  </div>
+</article>
+
+<article class="qa-card" data-card-key="2">
+  <div class="qa-card-inner">
+    <div class="qa-face qa-front">
+      <p class="qa-flow">Flow 02</p>
+      <h3 class="qa-question">How do I know everything is running smoothly?</h3>
+      <img class="qa-icon" src="flow_icon.svg" alt="">
+      <p class="qa-tap">[Tap to flip]</p>
+    </div>
+    <div class="qa-face qa-back">
+      <p class="qa-role">General Manager</p>
+      <img class="qa-photo" src="team_alex_levenston.jpg">
+      <h3 class="qa-name">Alex Levenston</h3>
+      <p class="qa-answer">Alex oversees day-to-day product and engineering execution, making sure every system performs exactly as it should.</p>
+    </div>
+  </div>
+</article>
+
+<article class="qa-card" data-card-key="3">
+  <div class="qa-card-inner">
+    <div class="qa-face qa-front">
+      <p class="qa-flow">Flow 03</p>
+      <h3 class="qa-question">How does Jemm figure out what my home needs?</h3>
+      <img class="qa-icon" src="flow_icon.svg" alt="">
+      <p class="qa-tap">[Tap to flip]</p>
+    </div>
+    <div class="qa-face qa-back">
+      <p class="qa-role">Product Manager</p>
+      <img class="qa-photo" src="team_nadia_petrov.jpg">
+      <h3 class="qa-name">Nadia Petrov</h3>
+      <p class="qa-answer">We start with a discovery session to understand your routines, devices, and preferences — so the system is built around you from day one.</p>
+    </div>
+  </div>
+</article>
+
+<article class="qa-card" data-card-key="4">
+  <div class="qa-card-inner">
+    <div class="qa-face qa-front">
+      <p class="qa-flow">Flow 04</p>
+      <h3 class="qa-question">Who sets up the system in my home?</h3>
+      <img class="qa-icon" src="flow_icon.svg" alt="">
+      <p class="qa-tap">[Tap to flip]</p>
+    </div>
+    <div class="qa-face qa-back">
+      <p class="qa-role">Software Architect</p>
+      <img class="qa-photo" src="team_marcus_webb.jpg">
+      <h3 class="qa-name">Marcus Webb</h3>
+      <p class="qa-answer">Our engineering team handles the full deployment and device integration, making sure everything works together seamlessly.</p>
+    </div>
+  </div>
+</article>
+
+<article class="qa-card" data-card-key="5">
+  <div class="qa-card-inner">
+    <div class="qa-face qa-front">
+      <p class="qa-flow">Flow 05</p>
+      <h3 class="qa-question">How does Jemm learn my habits?</h3>
+      <img class="qa-icon" src="flow_icon.svg" alt="">
+      <p class="qa-tap">[Tap to flip]</p>
+    </div>
+    <div class="qa-face qa-back">
+      <p class="qa-role">Artificial Intelligence Engineer</p>
+      <img class="qa-photo" src="team_jordan_blake.jpg">
+      <h3 class="qa-name">Jordan Blake</h3>
+      <p class="qa-answer">Our AI team trains and fine-tunes the local model based on your household's patterns — entirely on-device, never in the cloud.</p>
+    </div>
+  </div>
+</article>
+
+<article class="qa-card" data-card-key="6">
+  <div class="qa-card-inner">
+    <div class="qa-face qa-front">
+      <p class="qa-flow">Flow 06</p>
+      <h3 class="qa-question">What if I want to change something?</h3>
+      <img class="qa-icon" src="flow_icon.svg" alt="">
+      <p class="qa-tap">[Tap to flip]</p>
+    </div>
+    <div class="qa-face qa-back">
+      <p class="qa-role">UI/UX Designer</p>
+      <img class="qa-photo" src="team_li_tang_chen.jpg">
+      <h3 class="qa-name">Li Tang Chen</h3>
+      <p class="qa-answer">The interface is designed to make adjustments simple and intuitive. Your preferences, your way, anytime.</p>
+    </div>
+  </div>
+</article>
+</div>
+    </div>
+
+    <p class="team-action-copy reveal">Sound like your kind of team?</p>
+
+    <div class="team-action reveal">
+      <a href="careers.html" class="pill-button audience-style-button">Join us</a>
+    </div>
+  </div>
+</section>
+
+<section class="headquarter">
+      <div class="container headquarter-inner">
+        <div class="headquarter-copy reveal" style="width:100%; text-align:center; padding:34px 24px; background:rgba(0,0,0,.58); backdrop-filter:blur(2px); -webkit-backdrop-filter:blur(2px);">
+          <h2 class="section-title" style="font-family: var(--sans); font-size:16px; font-weight:400; line-height:1.4; letter-spacing:0; color:rgba(255,255,255,.82);">Headquarter at</h2>
+          <p>Brickell, Miami, FL, United States</p>
+        </div>
+        <div class="city-line reveal" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="container footer-grid">
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="product.html">Jemm Arc</a>
+            <a href="company.html">About Us</a>
+            <a href="careers.html">Careers</a>
+            <a href="partners.html">Partners</a>
+          </div>
+          <div class="footer-about">
+            <h3>Jemm Tec LLC</h3>
+            <p>Jemm is your home's quiet intelligence. Unlike systems that rely on distant servers to think for you, Jemm lives where you do, inside your walls, on your network, on your terms. It learns your routines, responds to your voice, and keeps everything running whether the internet is up or not. No cloud in the middle. No one listening in. Just your home, working the way it always should have.</p>
+            <div class="footer-social">
+              <img src="twitter_icon.svg" alt="">
+              <img src="facebook_icon.svg" alt="">
+              <img src="instagram_icon.svg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+          <div class="footer-legal">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <span>Copyright @ 2026 Jemm Tech LLC</span>
+          </div>
+          <div class="footer-email">
+            <a href="mailto:info@jemm.ai">info@jemm.ai</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const menuButton = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = document.body.classList.toggle('menu-open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        document.body.classList.remove('menu-open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll('.reveal').forEach(element => revealObserver.observe(element));
+  
+
+
+
+/* ===== draggable infinite people carousel v9: persistent flip states ===== */
+
+const peopleMarquee = document.querySelector('.people-marquee');
+const peopleTrack = document.querySelector('.people-track');
+
+if (peopleMarquee && peopleTrack) {
+  let isPointerDown = false;
+  let didDrag = false;
+  let startX = 0;
+  let lastX = 0;
+  let currentX = 0;
+  let autoSpeed = -0.42;
+  let pauseUntil = 0;
+  let activePointerId = null;
+  let downCard = null;
+  const flippedKeys = new Set();
+
+  function syncFlippedCards() {
+    document.querySelectorAll('.qa-card').forEach(card => {
+      const key = card.dataset.cardKey;
+      card.classList.toggle('flipped', flippedKeys.has(key));
+    });
+  }
+
+  function getLoopWidth() {
+    return peopleTrack.scrollWidth / 2;
+  }
+
+  function normalizePosition() {
+    const loopWidth = getLoopWidth();
+    if (!loopWidth) return;
+
+    while (currentX <= -loopWidth) currentX += loopWidth;
+    while (currentX > 0) currentX -= loopWidth;
+  }
+
+  function render() {
+    normalizePosition();
+    peopleTrack.style.transform = `translate3d(${currentX}px, 0, 0)`;
+  }
+
+  function animate() {
+    if (!isPointerDown && Date.now() > pauseUntil) {
+      currentX += autoSpeed;
+      render();
+    }
+    requestAnimationFrame(animate);
+  }
+
+  peopleMarquee.addEventListener('pointerdown', event => {
+    isPointerDown = true;
+    didDrag = false;
+    startX = event.clientX;
+    lastX = event.clientX;
+    activePointerId = event.pointerId;
+    downCard = event.target.closest('.qa-card');
+
+    peopleMarquee.classList.add('dragging');
+
+    try {
+      peopleMarquee.setPointerCapture(event.pointerId);
+    } catch(e) {}
+  });
+
+  peopleMarquee.addEventListener('pointermove', event => {
+    if (!isPointerDown || event.pointerId !== activePointerId) return;
+
+    const totalDelta = event.clientX - startX;
+    const stepDelta = event.clientX - lastX;
+    lastX = event.clientX;
+
+    if (Math.abs(totalDelta) > 6) didDrag = true;
+
+    if (didDrag) {
+      currentX += stepDelta;
+      pauseUntil = Date.now() + 900;
+      render();
+    }
+  });
+
+  peopleMarquee.addEventListener('pointerup', event => {
+    if (!isPointerDown || event.pointerId !== activePointerId) return;
+
+    if (!didDrag && downCard) {
+      const key = downCard.dataset.cardKey;
+      if (flippedKeys.has(key)) {
+        flippedKeys.delete(key);
+      } else {
+        flippedKeys.add(key);
+      }
+      syncFlippedCards();
+      pauseUntil = Date.now() + 1200;
+    }
+
+    isPointerDown = false;
+    didDrag = false;
+    activePointerId = null;
+    downCard = null;
+
+    peopleMarquee.classList.remove('dragging');
+
+    try {
+      peopleMarquee.releasePointerCapture(event.pointerId);
+    } catch(e) {}
+  });
+
+  peopleMarquee.addEventListener('pointercancel', () => {
+    isPointerDown = false;
+    didDrag = false;
+    activePointerId = null;
+    downCard = null;
+    peopleMarquee.classList.remove('dragging');
+  });
+
+  window.addEventListener('resize', render);
+
+  syncFlippedCards();
+  render();
+  animate();
+}
+
+</script>
+</body>
+</html>
